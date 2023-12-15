@@ -27,7 +27,7 @@ public class SuppliersController {
     }
 
     @GetMapping("/databyid/{_id}")
-    public ResponseEntity<Optional<Suppliers>> GetById(@PathVariable long _id){
+    public ResponseEntity<Optional<Suppliers>> GetById(@PathVariable String _id){
         try{
             return new ResponseEntity<Optional<Suppliers>>(suppliersService.getById(_id),HttpStatus.OK);
         }
@@ -62,7 +62,7 @@ public class SuppliersController {
     }
 
     @DeleteMapping("/delete/{_id}")
-    public ResponseEntity<String> delete(@PathVariable long _id){
+    public ResponseEntity<String> delete(@PathVariable String _id){
         try {
             if (suppliersService.getById((_id)).isPresent()) {
                 suppliersService.delete(_id);
