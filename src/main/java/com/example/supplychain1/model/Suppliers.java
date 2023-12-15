@@ -10,16 +10,12 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Data
 public class Suppliers {
     @Id
-    private long _id;
+    private String _id;
 
     @Field("email_id")
     private String emailId;
 
     private String facilities;
-
-    @Field("facility_id")
-    @DocumentReference(collection="facilities")
-    private Facilities facilityId;
 
     private Location location;
 
