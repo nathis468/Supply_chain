@@ -3,6 +3,7 @@ package com.example.supplychain1.model;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
@@ -10,26 +11,17 @@ import java.util.ArrayList;
 @Document(collection="material")
 @Data
 public class RawMaterial {
-
     @Id
     private long _id;
 
     private Availability availability;
-    @Field("RM_supplier_name")
-    private String rmSupplierName;
-
-
-    @Field("facilities_uid")
-    private ArrayList<String> facilitiesuid;
-
-    @Field("material_composition")
-    private ArrayList<String> materialComposition;
+    @Data
+    public static class Availability{
+        private String amount;
+    }
 
     @Field("material_number")
     private String materialNumber;
-
-    @Field("material_uid")
-    private String materialUid;
 
     private String name;
     private String number;
@@ -40,16 +32,26 @@ public class RawMaterial {
     private String season;
 
     @Field("supplier_id")
-    private String supplierId;
+    @DocumentReference(collection="suppliers")
+    private Suppliers supplierId;
 
     @Field("supplier_material_name")
     private String supplierMaterialName;
 
+    @Field("facilities_uid")
+    @DocumentReference(collection="facilities")
+    private ArrayList<Facilities> facilitiesUid;
+
+    @Field("material_composition")
+    private ArrayList<String> materialComposition;
+
+    @Field("material_uid")
+    private String materialUid;
+
+    @Field("RM_supplier_name")
+    private String rmSupplierName;
+
     private String type;
     private String year;
 
-    @Data
-    public class Availability{
-        private String amount;
-    }
 }

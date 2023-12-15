@@ -3,6 +3,7 @@ package com.example.supplychain1.model;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection="suppliers")
@@ -15,6 +16,11 @@ public class Suppliers {
     private String emailId;
 
     private String facilities;
+
+    @Field("facility_id")
+    @DocumentReference(collection="facilities")
+    private Facilities facilityId;
+
     private Location location;
 
     @Field("material_type")

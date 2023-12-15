@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
@@ -51,7 +52,8 @@ public class Style {
     @Data
     public static class Material{
         @Field("m_id")
-        private String mid;
+        @DocumentReference(collection="material")
+        private Material mid;
         private int composition;
     }
 }
